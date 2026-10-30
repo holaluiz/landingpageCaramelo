@@ -1,0 +1,517 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Helvetica Regular";
+    src: url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.eot");
+    src: url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.svg#Helvetica Regular")format("svg");
+}
+
+:root {
+  --font-sans: "Inter", "Helvetica Regular", system-ui, sans-serif;
+  --ink: #101014;
+  --cream: #FFF4E8;
+  --caramel: #FF701A;
+  --caramel-hover: #E55E0D;
+  --sky: #25BFFF;
+  --pink: #FF3D8D;
+  --violet: #7657FF;
+  --yellow: #FFD52A;
+  --surface: #18181D;
+  --pill: rgba(255, 112, 26, 0.12);
+  --line: rgba(16, 16, 20, 0.08);
+  --bg: #FFF4E8;
+  --radius: 20px;
+}
+
+html {
+  background: #101014;
+}
+
+/* ========================================================
+   CUSTOM SCROLLBAR · IDENTIDADE VISUAL CARAMELO
+======================================================== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #FF701A #101014;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #101014;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF701A;
+  border-radius: 999px;
+  border: 2px solid #101014;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFB800;
+}
+
+::-webkit-scrollbar-corner {
+  background: #101014;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@layer utilities {
+  .font-montserrat {
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .font-podium {
+    font-family: "Montserrat", "FSP DEMO - PODIUM Sharp 4.11", sans-serif;
+  }
+
+  .font-helvetica {
+    font-family: "Helvetica Regular", sans-serif;
+  }
+
+  .font-caveat {
+    font-family: "Caveat", cursive;
+  }
+
+  /* Fade up animations */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-up {
+    opacity: 0;
+    animation: fade-up 0.8s ease-out 0s forwards;
+  }
+
+  .animate-fade-up-delay-1 {
+    opacity: 0;
+    animation: fade-up 0.8s ease-out 0.2s forwards;
+  }
+
+  .animate-fade-up-delay-2 {
+    opacity: 0;
+    animation: fade-up 0.8s ease-out 0.4s forwards;
+  }
+
+  .animate-fade-up-delay-3 {
+    opacity: 0;
+    animation: fade-up 0.8s ease-out 0.6s forwards;
+  }
+
+  .animate-fade-up-delay-4 {
+    opacity: 0;
+    animation: fade-up 0.8s ease-out 0.8s forwards;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    animation: fade-in 0.8s ease-out 0s forwards;
+  }
+
+  .animate-fade-in-delay {
+    opacity: 0;
+    animation: fade-in 0.8s ease-out 0.3s forwards;
+  }
+
+  .animate-scale-in {
+    opacity: 0;
+    animation: scale-in 0.8s ease-out 0s forwards;
+  }
+
+  .animate-step-swap {
+    animation: stepSwap 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes stepSwap {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Marquee infinite scroll */
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee 65s linear infinite;
+}
+
+/* Keyframes for drift and petals */
+@keyframes driftA {
+  from { transform: translate(0, 0); }
+  to { transform: translate(26px, 4px); }
+}
+
+@keyframes driftB {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-30px, 6px); }
+}
+
+.drift-a {
+  animation: driftA 14s ease-in-out infinite alternate;
+}
+
+.drift-b {
+  animation: driftB 17s ease-in-out infinite alternate;
+}
+
+@keyframes fall {
+  to {
+    transform: translate(var(--dx, 0px), 110vh) rotate(540deg);
+  }
+}
+
+/* Shared components from Base — Caramelo Design System */
+.pill-base {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 112, 26, 0.1);
+  color: #FF701A;
+  border: 1px solid rgba(255, 112, 26, 0.28);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: "Inter", system-ui, sans-serif;
+  width: fit-content;
+}
+
+.h2-base {
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Inter Tight", system-ui, sans-serif;
+  color: #101014;
+}
+
+.btn-olive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: #FF701A;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  white-space: nowrap;
+  box-shadow: 0 4px 18px rgba(255, 112, 26, 0.35);
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.btn-olive:hover {
+  transform: translateY(-1px);
+  background: #E55E0D;
+  box-shadow: 0 6px 24px rgba(255, 112, 26, 0.5);
+}
+
+.glass-sq {
+  position: absolute;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+.grid-sq {
+  position: absolute;
+  border: 1px solid rgba(16, 16, 20, 0.06);
+  border-radius: 10px;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+}
+
+@keyframes pulse-sq {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.animate-sq {
+  animation: pulse-sq 3.5s ease-in-out infinite;
+}
+
+.card-ticket {
+  height: 154px;
+  padding: 20px 24px;
+  border-radius: var(--radius);
+  background: #101014;
+  color: #FFF4E8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 244, 232, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-mask: radial-gradient(circle 17px at 0 55%, #0000 97%, #000) left/51% 100% no-repeat,
+                radial-gradient(circle 17px at 100% 55%, #0000 97%, #000) right/51% 100% no-repeat;
+  mask: radial-gradient(circle 17px at 0 55%, #0000 97%, #000) left/51% 100% no-repeat,
+        radial-gradient(circle 17px at 100% 55%, #0000 97%, #000) right/51% 100% no-repeat;
+}
+
+.card-ticket:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 112, 26, 0.45);
+  box-shadow: 0 14px 30px -5px rgba(255, 112, 26, 0.22);
+}
+
+.band-frosted {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -6px;
+  width: min(560px, 88vw);
+  height: 64px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(16, 16, 20, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+}
+
+/* Loop Accordion */
+.loop-panel {
+  position: relative;
+  flex: 0 0 clamp(96px, 11vw, 170px);
+  height: 100%;
+  overflow: hidden;
+  border-right: 1px solid var(--line);
+  cursor: pointer;
+  outline: none;
+  transition: flex-grow 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.loop-panel:last-child {
+  border-right: none;
+}
+
+.loop-panel.is-active {
+  flex-grow: 1;
+  cursor: default;
+}
+
+.loop-panel-in {
+  position: absolute;
+  left: clamp(14px, 1.8vw, 28px);
+  bottom: 10vh;
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(16px, 2vw, 30px);
+  width: max-content;
+}
+
+.loop-num {
+  font-size: clamp(170px, 36vh, 380px);
+  font-weight: 600;
+  line-height: 0.74;
+  letter-spacing: -0.07em;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.loop-step {
+  position: relative;
+  width: min(400px, 30vw);
+  padding-bottom: 4px;
+  opacity: 0;
+  transform: translateX(-24px);
+  filter: blur(6px);
+  transition: opacity 0.4s, transform 0.5s, filter 0.4s;
+}
+
+.loop-panel.is-active .loop-step {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition: opacity 0.7s 0.4s, transform 0.9s 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.7s 0.4s;
+}
+
+.loop-mini-cloud {
+  position: absolute;
+  left: -10%;
+  bottom: calc(100% + clamp(70px, 13vh, 150px));
+  width: min(18vw, 250px);
+  max-width: none;
+  pointer-events: none;
+  animation: driftA 9s ease-in-out infinite alternate;
+}
+
+.petal-item {
+  position: absolute;
+  top: -20px;
+  width: calc(10px * var(--s, 1));
+  height: calc(8px * var(--s, 1));
+  border-radius: 80% 0 80% 0;
+  background: #f6c4d6;
+  opacity: 0.85;
+  animation: fall linear infinite;
+  pointer-events: none;
+}
+
+/* 2. The Liquid Glass CSS */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Wild Pill Hero Section Styles */
+.wild-section {
+  --fs: min(19.6vh, 13.2vw);
+  font-size: var(--fs);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+@media (max-width: 720px) {
+  .wild-section {
+    --fs: min(34vw, 16.5vh);
+  }
+}
+
+@media (max-width: 900px) {
+  .card-ticket {
+    height: 120px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .loop-track {
+    position: relative !important;
+    inset: auto !important;
+    flex-direction: column !important;
+    margin-top: 40px !important;
+  }
+  .loop-panel {
+    flex: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    border-right: none !important;
+    border-top: 1px solid var(--line) !important;
+    cursor: auto !important;
+  }
+  .loop-panel-in {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    padding: 28px 16px !important;
+    gap: 18px !important;
+  }
+  .loop-num {
+    font-size: 150px !important;
+  }
+  .loop-step, .loop-panel.is-active .loop-step {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    width: auto !important;
+    transition: none !important;
+  }
+  .loop-mini-cloud {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-a, .drift-b, .petal-item {
+    animation: none !important;
+  }
+}
